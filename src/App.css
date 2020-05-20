@@ -11,13 +11,10 @@ body{
 }
 
 #root{
-    background-color: whitesmoke;
-    opacity: 0.9;
-    border-radius: 5px;
     font-family: 'Roboto', sans-serif;
-    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
