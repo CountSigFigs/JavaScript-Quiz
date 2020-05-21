@@ -11,19 +11,20 @@ class App extends Component {
 
 
   render() {
+
     return (
       <Router>
         <Box className="App">
           <Container maxWidth='md' style={styles.container}>
             <Paper style={styles.bigPaper} elevation={2}>
-            <Switch>
-              <Route exact path="/">             
-                <StartingComponent/>
-              </Route>
-              <Route path="/game">             
-                <Game/>
-              </Route>
-            </Switch>
+              <Switch>
+                <Route exact path="/">             
+                  <StartingComponent/>
+                </Route>
+                <Route path="/game">             
+                  <Game/>
+                </Route>
+              </Switch>
             </Paper>
           </Container>
         </Box>
