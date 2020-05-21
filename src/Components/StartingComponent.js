@@ -39,7 +39,7 @@ class StartingComponent extends Component{
 const styles = {
     paper: {
       textAlign: 'center',
-      padding: 10,
+      padding: 15,
       margin: 10,
       height: 324,
       display: 'flex',
