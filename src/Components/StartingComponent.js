@@ -53,6 +53,9 @@ const styles = {
       marginTop: 7,
       marginBottom: 7
     },
+    link:{
+      textDecoration:'none'
+    },
     button: {
       margin: 4
     }

@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 
-const jsLogo = require('../Images/JavaScript.png');
 
 class Game extends Component{
     render () {
@@ -14,17 +13,30 @@ class Game extends Component{
             justify='center'
             alignItems='center'
           >
-            <Grid item sm={7}>
-              <Paper style={styles.paper} elevation={3}>
-                <img src={jsLogo} alt='javscript logo'></img>
+            <Grid item sm={12}>
+                <div style={styles.header}>Question 1</div>
+              <Paper style={styles.question} elevation={3}>
+                <p>Variables declared with "const" must be immediately initialized to a value</p>
               </Paper>
             </Grid>
-            <Grid item sm={5}>
+            <Grid item sm={6}>
               <Paper style={styles.paper} elevation={3}>
-                <div style={styles.title}>JavaScript Quiz</div>
-                <div>Test your knowledge of JavaScript by answering this 10 question quiz.Click the button
-          below when you are ready to begin.</div>
-                <Button variant="contained" color="primary" style={styles.button}> Start</Button>
+                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
+              </Paper>
+            </Grid>
+            <Grid item sm={6}>
+              <Paper style={styles.paper} elevation={3}>
+                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
+              </Paper>
+            </Grid>
+            <Grid item sm={6}>
+              <Paper style={styles.paper} elevation={3}>
+                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
+              </Paper>
+            </Grid>
+            <Grid item sm={6}>
+              <Paper style={styles.paper} elevation={3}>
+                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
               </Paper>
             </Grid>
           </Grid>
@@ -33,21 +45,30 @@ class Game extends Component{
 }
 
 const styles = {
+    header:{
+        marginLeft:10,
+        marginBottom:10,
+        fontWeight:'bold',
+        fontSize:24
+    },
+    question:{
+      textAlign: 'center',
+      fontWeight:'bold',
+      padding: 15,
+      margin: 10,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'    
+    },
     paper: {
       textAlign: 'center',
       padding: 10,
       margin: 10,
-      height: 324,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center'
-    },
-    title: {
-      fontWeight: 'bold',
-      fontSize: 32,
-      marginTop: 7,
-      marginBottom: 7
     },
     button: {
       margin: 4
