@@ -2,11 +2,19 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
-import { Fade, Stagger } from 'react-animation-components';
+import { Fade } from 'react-animation-components';
 
 
 class Game extends Component {
+    
+    componentDidMount(){
+        console.log(this.props.questions)
+    }
+
     render() {
+
+        let {key} = this.props.questions[0];
+
         return (
             <Fade
                 in
@@ -21,34 +29,63 @@ class Game extends Component {
                     <Grid item sm={12}>
                         <div style={styles.header}>Question 1</div>
                         <Paper style={styles.question} elevation={3}>
-                            <p>Variables declared with "const" must be immediately initialized to a value</p>
+                            <p>{this.props.questions[0].question}</p>
                         </Paper>
                     </Grid>
                     <Grid item sm={6}>
                         <Fade in>
                             <Paper style={styles.paper} elevation={3}>
-                                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    style={styles.button}
+                                    onClick={()=> this.props.handleClick()}
+                                >
+                                    {this.props.questions[0].answer1}
+                                </Button>
                             </Paper>
                         </Fade>
                     </Grid>
                     <Grid item sm={6}>
                         <Fade in>
                             <Paper style={styles.paper} elevation={3}>
-                                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    style={styles.button}
+                                    onClick={()=> this.props.handleClick()}
+                                >
+                                    {this.props.questions[0].answer2}
+                                </Button>
                             </Paper>
                         </Fade>
                     </Grid>
                     <Grid item sm={6}>
                         <Fade in>
                             <Paper style={styles.paper} elevation={3}>
-                                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    style={styles.button}
+                                    onClick={()=> this.props.handleClick()}
+                                >
+                                {this.props.questions[0].answer3}                                    
+                                </Button>
                             </Paper>
                         </Fade>
                     </Grid>
                     <Grid item sm={6}>
                         <Fade in>
                             <Paper style={styles.paper} elevation={3}>
-                                <Button variant="contained" color="primary" style={styles.button}>Yes, that is correct</Button>
+                                <Button
+                                    key={this.props.questions[0].key}
+                                    variant="contained" 
+                                    color="primary" 
+                                    style={styles.button}
+                                    onClick={()=> this.props.handleClick({key})}
+                                >
+                                    {this.props.questions[0].answer4}
+                                </Button>
                             </Paper>
                         </Fade>
                     </Grid>
@@ -85,7 +122,8 @@ const styles = {
         alignItems: 'center'
     },
     button: {
-        margin: 4
+        margin: 4,
+        width: 175
     }
 }
 

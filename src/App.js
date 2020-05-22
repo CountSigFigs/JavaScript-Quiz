@@ -6,9 +6,33 @@ import Paper from '@material-ui/core/Paper';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import StartingComponent from './Components/StartingComponent'
 import Game from './Components/GameComponent';
-
+import { QUESTIONS } from '../src/State/quizquestions'
 class App extends Component {
+  
+  constructor(props){
+    super(props)
+    this.state = {
+      questions: QUESTIONS,
+      score:0,
+      feedBack:''
+    }
 
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(answer = false){
+   // let newScore = this.state.score;
+    //newScore+=1
+    //this.setState({
+      //score:newScore
+    //})
+    if (answer){
+      console.log('Yay you picked the right answer!')
+    } else {
+      console.log('You picked the wrong answer')
+    }
+    
+  }
 
   render() {
 
@@ -22,7 +46,7 @@ class App extends Component {
                   <StartingComponent/>
                 </Route>
                 <Route path="/game">             
-                  <Game/>
+                  <Game questions={this.state.questions} handleClick={this.handleClick}/>
                 </Route>
               </Switch>
             </Paper>
