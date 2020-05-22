@@ -3,14 +3,35 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import { Fade } from 'react-animation-components';
+import Box from '@material-ui/core/Box';
 
+
+class Feedback extends Component {
+
+    render (){
+        if (this.props.disable){
+            return (
+                <Box style={styles.footer}>
+                     {this.props.feedback} 
+                    <Button
+                        variant="contained" 
+                        color="primary" 
+                        style={styles.button}
+                        > 
+                        Next Question
+                    </Button>             
+                 </Box>
+            )
+        }
+        else {
+            return <Box></Box>
+        }
+    }
+}
 
 class Game extends Component {
     
-    componentDidMount(){
-        console.log(this.props.questions)
-    }
-
+    
     render() {
 
         let {key} = this.props.questions[0];
@@ -89,6 +110,9 @@ class Game extends Component {
                             </Paper>
                         </Fade>
                     </Grid>
+                    <Grid item sm={12}>
+                        <Feedback feedback={this.props.feedback} disable={this.props.disable} />
+                    </Grid>
                 </Grid>
             </Fade>
         )
@@ -124,6 +148,12 @@ const styles = {
     button: {
         margin: 4,
         width: 175
+    },
+    footer:{
+        marginTop:25,
+        display:'flex',
+        justifyContent:'space-between',
+        alignItems:'center'
     }
 }
 
