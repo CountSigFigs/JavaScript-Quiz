@@ -17,6 +17,7 @@ class Feedback extends Component {
                         variant="contained" 
                         color="primary" 
                         style={styles.button}
+                        onClick={this.props.handleNextQuestion}
                         > 
                         Next Question
                     </Button>             
@@ -48,7 +49,7 @@ class Game extends Component {
                     alignItems='center'
                 >
                     <Grid item sm={12}>
-                        <div style={styles.header}>Question 1</div>
+                        <div style={styles.header}>Question: {this.props.questions[0].id}</div>
                         <Paper style={styles.question} elevation={3}>
                             <p>{this.props.questions[0].question}</p>
                         </Paper>
@@ -111,7 +112,11 @@ class Game extends Component {
                         </Fade>
                     </Grid>
                     <Grid item sm={12}>
-                        <Feedback feedback={this.props.feedback} disable={this.props.disable} />
+                        <Feedback 
+                            feedback={this.props.feedback} 
+                            disable={this.props.disable} 
+                            handleNextQuestion={this.props.handleNextQuestion}    
+                        />
                     </Grid>
                 </Grid>
             </Fade>

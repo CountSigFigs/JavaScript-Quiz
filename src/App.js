@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import StartingComponent from './Components/StartingComponent'
 import Game from './Components/GameComponent';
 import { QUESTIONS } from '../src/State/quizquestions'
+
+
 class App extends Component {
 
   constructor(props) {
@@ -19,6 +21,8 @@ class App extends Component {
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.handleNextQuestion = this.handleNextQuestion.bind(this)
+
   }
 
   handleClick(answer = false) {
@@ -48,8 +52,13 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(){
-    console.log(this.state.score)
+  handleNextQuestion(){
+    let questions = this.state.questions
+    questions.shift(0)
+    this.setState({
+      questions
+    })
+    this.toggleDisable()
   }
 
   toggleDisable(){
@@ -72,6 +81,7 @@ class App extends Component {
                   <Game 
                     questions={this.state.questions} 
                     handleClick={this.handleClick} 
+                    handleNextQuestion={this.handleNextQuestion}
                     feedback={this.state.feedback} 
                     disable={this.state.disable}/>
                 </Route>

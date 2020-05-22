@@ -20,7 +20,8 @@ export const QUESTIONS = [
         answer4:'if i == 5 then',
         correctAnswer: 'answer3',
         feedbackCorrect:'You are correct! Great job.',
-        feedbackWrong:'That is incorrect. The correct answer is if ( i == 5)'
+        feedbackWrong:'That is incorrect. The correct answer is if ( i == 5)',
+        key:true
     }
 ]
 
