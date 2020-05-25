@@ -17,6 +17,7 @@ class App extends Component {
       questions: QUESTIONS,
       score: 0,
       feedback: '',
+      correct: true,
       disable: false
     }
 
@@ -24,12 +25,12 @@ class App extends Component {
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
 
   }
+  
+  handleClick(answer) {
 
-  handleClick(answer = false) {
-   
     //provides logic for clicking on answer only once
     if (this.state.disable === false) {
-      if (answer) {
+      if (answer === this.state.questions[0].key) {
         //provides correct response
         let feedback = this.state.questions[0].feedbackCorrect
         let newScore = this.state.score
@@ -37,22 +38,26 @@ class App extends Component {
         newScore += 1
         this.setState({
           feedback: feedback,
-          score: newScore
+          score: newScore,
+          correct:true
         })
         console.log(this.state.score)
       } else {
         //provides feedback for wrong answer
         let feedback = this.state.questions[0].feedbackWrong
         this.setState({
-          feedback: feedback
+          feedback: feedback,
+          correct:false
         })
       }
       //logic to move on to next question
       this.toggleDisable()
     }
-  }
+  } 
 
   handleNextQuestion(){
+
+    //pops the question for the next one to be displayed
     let questions = this.state.questions
     questions.shift(0)
     this.setState({
@@ -83,6 +88,7 @@ class App extends Component {
                     handleClick={this.handleClick} 
                     handleNextQuestion={this.handleNextQuestion}
                     feedback={this.state.feedback} 
+                    correct={this.state.correct}
                     disable={this.state.disable}/>
                 </Route>
               </Switch>

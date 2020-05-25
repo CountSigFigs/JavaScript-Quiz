@@ -16,12 +16,12 @@ class StartingComponent extends Component{
             justify='center'
             alignItems='center'
           >
-            <Grid item sm={7}>
+            <Grid item sm={6}>
               <Paper style={styles.paper} elevation={3}>
                 <img src={jsLogo} alt='javscript logo'></img>
               </Paper>
             </Grid>
-            <Grid item sm={5}>
+            <Grid item sm={6}>
               <Paper style={styles.paper} elevation={3}>
                 <div style={styles.title}>JavaScript Quiz</div>
                 <div>Test your knowledge of JavaScript by answering this 10 question quiz.Click the button

@@ -9,7 +9,7 @@ export const QUESTIONS = [
         correctAnswer: 'answer4',
         feedbackCorrect:'You are correct! Great job.',
         feedbackWrong:'That is incorrect. The correct answer is <script>',
-        key:true
+        key: 'answer4'
     },
     {
         id:2,
@@ -21,7 +21,7 @@ export const QUESTIONS = [
         correctAnswer: 'answer3',
         feedbackCorrect:'You are correct! Great job.',
         feedbackWrong:'That is incorrect. The correct answer is if ( i == 5)',
-        key:true
+        key:'answer3'
     }
 ]
 

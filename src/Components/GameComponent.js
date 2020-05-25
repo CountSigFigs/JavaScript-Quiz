@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
-import { Fade } from 'react-animation-components';
 import Box from '@material-ui/core/Box';
 
 
@@ -10,19 +9,36 @@ class Feedback extends Component {
 
     render (){
         if (this.props.disable){
-            return (
-                <Box style={styles.footer}>
-                     {this.props.feedback} 
-                    <Button
-                        variant="contained" 
-                        color="primary" 
-                        style={styles.button}
-                        onClick={this.props.handleNextQuestion}
-                        > 
-                        Next Question
-                    </Button>             
-                 </Box>
-            )
+            if (this.props.correct){
+                return (
+                    <Box style={styles.footer}>
+                         <p style={{color:'green'}}>{this.props.feedback}</p>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            style={styles.button}
+                            onClick={this.props.handleNextQuestion}
+                            > 
+                            Next Question
+                        </Button>             
+                     </Box>
+                )
+            } else {
+                return (
+                    <Box style={styles.footer}>
+                         <p style={{color:'red'}}>{this.props.feedback} </p>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            style={styles.button}
+                            onClick={this.props.handleNextQuestion}
+                            > 
+                            Next Question
+                        </Button>             
+                     </Box>
+                )
+            }
+            
         }
         else {
             return <Box></Box>
@@ -35,13 +51,8 @@ class Game extends Component {
     
     render() {
 
-        let {key} = this.props.questions[0];
 
         return (
-            <Fade
-                in
-                duration={200}
-            >
                 <Grid
                     container
                     direction='row'
@@ -55,71 +66,63 @@ class Game extends Component {
                         </Paper>
                     </Grid>
                     <Grid item sm={6}>
-                        <Fade in>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button 
                                     variant="contained" 
                                     color="primary" 
                                     style={styles.button}
-                                    onClick={()=> this.props.handleClick()}
+                                    onClick={()=> this.props.handleClick('answer1')}
                                 >
                                     {this.props.questions[0].answer1}
                                 </Button>
                             </Paper>
-                        </Fade>
                     </Grid>
                     <Grid item sm={6}>
-                        <Fade in>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button 
                                     variant="contained" 
                                     color="primary" 
                                     style={styles.button}
-                                    onClick={()=> this.props.handleClick()}
+                                    onClick={()=> this.props.handleClick('answer2')}
                                 >
                                     {this.props.questions[0].answer2}
                                 </Button>
                             </Paper>
-                        </Fade>
                     </Grid>
                     <Grid item sm={6}>
-                        <Fade in>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button 
                                     variant="contained" 
                                     color="primary" 
                                     style={styles.button}
-                                    onClick={()=> this.props.handleClick()}
+                                    onClick={()=> this.props.handleClick('answer3')}
                                 >
                                 {this.props.questions[0].answer3}                                    
                                 </Button>
                             </Paper>
-                        </Fade>
                     </Grid>
                     <Grid item sm={6}>
-                        <Fade in>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button
                                     key={this.props.questions[0].key}
                                     variant="contained" 
                                     color="primary" 
                                     style={styles.button}
-                                    onClick={()=> this.props.handleClick({key})}
+                                    onClick={()=> this.props.handleClick('answer4')}
                                 >
                                     {this.props.questions[0].answer4}
                                 </Button>
                             </Paper>
-                        </Fade>
                     </Grid>
                     <Grid item sm={12}>
                         <Feedback 
                             feedback={this.props.feedback} 
                             disable={this.props.disable} 
-                            handleNextQuestion={this.props.handleNextQuestion}    
+                            handleNextQuestion={this.props.handleNextQuestion}   
+                            correct={this.props.correct} 
                         />
                     </Grid>
                 </Grid>
-            </Fade>
         )
     }
 }
