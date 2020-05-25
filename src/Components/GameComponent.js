@@ -155,7 +155,8 @@ const styles = {
     },
     button: {
         margin: 4,
-        width: 175
+        width: 175,
+        textTransform:'none'
     },
     footer:{
         marginTop:25,
