@@ -16,9 +16,12 @@ class App extends Component {
     this.state = {
       questions: QUESTIONS,
       score: 0,
+      current:0,
+      total:10,
       feedback: '',
       correct: true,
-      disable: false
+      disable: false,
+      percentage:0
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -33,22 +36,25 @@ class App extends Component {
       if (answer === this.state.questions[0].key) {
         //provides correct response
         let feedback = this.state.questions[0].feedbackCorrect
-        let newScore = this.state.score
-        //updates score
-        newScore += 1
-        this.setState({
+        //updates score and current
+        this.setState(prevState => ({
           feedback: feedback,
-          score: newScore,
-          correct:true
-        })
-        console.log(this.state.score)
+          score: prevState.score + 1,
+          correct:true,
+          current: prevState.current + 1
+          })
+        )
+        console.log(this.state)
       } else {
         //provides feedback for wrong answer
         let feedback = this.state.questions[0].feedbackWrong
-        this.setState({
+        this.setState(prevState => ({
+          current: prevState.current + 1,
           feedback: feedback,
           correct:false
-        })
+          })
+        )
+        console.log(this.state)
       }
       //logic to move on to next question
       this.toggleDisable()
@@ -58,11 +64,14 @@ class App extends Component {
   handleNextQuestion(){
 
     //pops the question for the next one to be displayed
-    let questions = this.state.questions
-    questions.shift(0)
-    this.setState({
-      questions
-    })
+    let nextQuestions = this.state.questions;
+    nextQuestions.shift(0)
+
+    this.setState(prevState => ({
+      questions: nextQuestions,
+      percentage: (this.state.current/this.state.total * 100)
+      })
+    )
     this.toggleDisable()
   }
 
@@ -89,6 +98,7 @@ class App extends Component {
                     handleNextQuestion={this.handleNextQuestion}
                     feedback={this.state.feedback} 
                     correct={this.state.correct}
+                    percentage={this.state.percentage}
                     disable={this.state.disable}/>
                 </Route>
               </Switch>

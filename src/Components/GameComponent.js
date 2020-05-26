@@ -3,54 +3,11 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-
-
-class Feedback extends Component {
-
-    render (){
-        if (this.props.disable){
-            if (this.props.correct){
-                return (
-                    <Box style={styles.footer}>
-                         <p style={{color:'green'}}>{this.props.feedback}</p>
-                        <Button
-                            variant="contained" 
-                            color="primary" 
-                            style={styles.button}
-                            onClick={this.props.handleNextQuestion}
-                            > 
-                            Next Question
-                        </Button>             
-                     </Box>
-                )
-            } else {
-                return (
-                    <Box style={styles.footer}>
-                         <p style={{color:'red'}}>{this.props.feedback} </p>
-                        <Button
-                            variant="contained" 
-                            color="primary" 
-                            style={styles.button}
-                            onClick={this.props.handleNextQuestion}
-                            > 
-                            Next Question
-                        </Button>             
-                     </Box>
-                )
-            }
-            
-        }
-        else {
-            return <Box></Box>
-        }
-    }
-}
+import ProgressBar from './ProgressBar';
 
 class Game extends Component {
     
-    
     render() {
-
 
         return (
                 <Grid
@@ -60,6 +17,7 @@ class Game extends Component {
                     alignItems='center'
                 >
                     <Grid item sm={12}>
+                        <ProgressBar percentage={this.props.percentage}/>
                         <div style={styles.header}>Question: {this.props.questions[0].id}</div>
                         <Paper style={styles.question} elevation={3}>
                             <p>{this.props.questions[0].question}</p>
@@ -126,6 +84,46 @@ class Game extends Component {
         )
     }
 }
+class Feedback extends Component {
+
+    render (){
+        if (this.props.disable){
+            if (this.props.correct){
+                return (
+                    <Box style={styles.footer}>
+                         <p style={{color:'green'}}>{this.props.feedback}</p>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            style={styles.button}
+                            onClick={this.props.handleNextQuestion}
+                            > 
+                            Next Question
+                        </Button>             
+                     </Box>
+                )
+            } else {
+                return (
+                    <Box style={styles.footer}>
+                         <p style={{color:'red'}}>{this.props.feedback} </p>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            style={styles.button}
+                            onClick={this.props.handleNextQuestion}
+                            > 
+                            Next Question
+                        </Button>             
+                     </Box>
+                )
+            }
+            
+        }
+        else {
+            return <Box></Box>
+        }
+    }
+}
 
 const styles = {
     header: {
@@ -165,5 +163,6 @@ const styles = {
         alignItems:'center'
     }
 }
+
 
 export default Game;

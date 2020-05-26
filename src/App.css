@@ -19,6 +19,21 @@ body{
 }
 
 a{
-    text-decoration: none !important;
+ text-decoration: none !important;
+}
+
+.progress-bar{
+    position: relative;
+    height: 20px;
+    width: 500px;
+    border-radius: 50px;
+    border: 1px solid #333;
+}
+
+.filler{
+    background-color: #1da598;
+    border-radius: inherit;
+    height:100%;
+    transition: width .2s ease-in;
 }
 

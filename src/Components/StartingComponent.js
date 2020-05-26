@@ -5,7 +5,6 @@ import { Button } from '@material-ui/core';
 import {Link} from 'react-router-dom'
 const jsLogo = require('../Images/JavaScript.png');
 
-
 class StartingComponent extends Component{
 
     render (){
@@ -16,16 +15,16 @@ class StartingComponent extends Component{
             justify='center'
             alignItems='center'
           >
-            <Grid item sm={6}>
-              <Paper style={styles.paper} elevation={3}>
+            <Grid item sm={7}>
+              <Paper style={styles.logo} elevation={3}>
                 <img src={jsLogo} alt='javscript logo'></img>
               </Paper>
             </Grid>
-            <Grid item sm={6}>
+            <Grid item sm={5}>
               <Paper style={styles.paper} elevation={3}>
                 <div style={styles.title}>JavaScript Quiz</div>
                 <div>Test your knowledge of JavaScript by answering this 10 question quiz.Click the button
-          below when you are ready to begin.</div>
+                below when you are ready to begin.</div>
                 <Link to="/game">
                     <Button variant="contained" color="primary" style={styles.button}> Start</Button>
                 </Link>
@@ -37,9 +36,22 @@ class StartingComponent extends Component{
 }
 
 const styles = {
+    logo:{
+      margin:10,
+      padding:15,
+      textAlign: 'center',
+      height: 324,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
     paper: {
       textAlign: 'center',
-      padding: 15,
+      paddingTop: 15,
+      paddingBottom: 15,
+      paddingRight:35,
+      paddingLeft:35,
       margin: 10,
       height: 324,
       display: 'flex',
