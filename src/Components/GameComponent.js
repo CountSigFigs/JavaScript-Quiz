@@ -17,7 +17,7 @@ class Game extends Component {
                     alignItems='center'
                 >
                     <Grid item sm={12}>
-                        <ProgressBar percentage={this.props.percentage}/>
+                        <p style={styles.progress}>Progress: </p><ProgressBar percentage={this.props.percentage}/>
                         <div style={styles.header}>Question: {this.props.questions[0].id}</div>
                         <Paper style={styles.question} elevation={3}>
                             <p>{this.props.questions[0].question}</p>
@@ -77,7 +77,7 @@ class Game extends Component {
                             feedback={this.props.feedback} 
                             disable={this.props.disable} 
                             handleNextQuestion={this.props.handleNextQuestion}   
-                            correct={this.props.correct} 
+                            color={this.props.color} 
                         />
                     </Grid>
                 </Grid>
@@ -88,10 +88,9 @@ class Feedback extends Component {
 
     render (){
         if (this.props.disable){
-            if (this.props.correct){
                 return (
                     <Box style={styles.footer}>
-                         <p style={{color:'green'}}>{this.props.feedback}</p>
+                         <p style={{color:`${this.props.color}`}}>{this.props.feedback}</p>
                         <Button
                             variant="contained" 
                             color="primary" 
@@ -102,24 +101,7 @@ class Feedback extends Component {
                         </Button>             
                      </Box>
                 )
-            } else {
-                return (
-                    <Box style={styles.footer}>
-                         <p style={{color:'red'}}>{this.props.feedback} </p>
-                        <Button
-                            variant="contained" 
-                            color="primary" 
-                            style={styles.button}
-                            onClick={this.props.handleNextQuestion}
-                            > 
-                            Next Question
-                        </Button>             
-                     </Box>
-                )
-            }
-            
-        }
-        else {
+        } else {
             return <Box></Box>
         }
     }
@@ -155,6 +137,10 @@ const styles = {
         margin: 4,
         width: 175,
         textTransform:'none'
+    },
+    progress:{
+        marginBottom:5,
+        fontWeight:'bold'
     },
     footer:{
         marginTop:25,

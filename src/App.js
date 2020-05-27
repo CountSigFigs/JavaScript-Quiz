@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import { Container } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import StartingComponent from './Components/StartingComponent'
+import StartingComponent from './Components/StartingComponent';
 import Game from './Components/GameComponent';
 import { QUESTIONS } from '../src/State/quizquestions'
 
@@ -19,7 +19,7 @@ class App extends Component {
       current:0,
       total:10,
       feedback: '',
-      correct: true,
+      color: '',
       disable: false,
       percentage:0
     }
@@ -40,21 +40,19 @@ class App extends Component {
         this.setState(prevState => ({
           feedback: feedback,
           score: prevState.score + 1,
-          correct:true,
+          color:'green',
           current: prevState.current + 1
           })
         )
-        console.log(this.state)
       } else {
         //provides feedback for wrong answer
         let feedback = this.state.questions[0].feedbackWrong
         this.setState(prevState => ({
           current: prevState.current + 1,
           feedback: feedback,
-          correct:false
+          color:'red'
           })
         )
-        console.log(this.state)
       }
       //logic to move on to next question
       this.toggleDisable()
@@ -67,11 +65,10 @@ class App extends Component {
     let nextQuestions = this.state.questions;
     nextQuestions.shift(0)
 
-    this.setState(prevState => ({
+    this.setState({
       questions: nextQuestions,
       percentage: (this.state.current/this.state.total * 100)
       })
-    )
     this.toggleDisable()
   }
 
@@ -97,7 +94,7 @@ class App extends Component {
                     handleClick={this.handleClick} 
                     handleNextQuestion={this.handleNextQuestion}
                     feedback={this.state.feedback} 
-                    correct={this.state.correct}
+                    color={this.state.color}
                     percentage={this.state.percentage}
                     disable={this.state.disable}/>
                 </Route>
