@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/JavaScript-Quiz/static/css/main.eca59ae4.chunk.css",
+    "main.js": "/JavaScript-Quiz/static/js/main.c0ada462.chunk.js",
+    "main.js.map": "/JavaScript-Quiz/static/js/main.c0ada462.chunk.js.map",
+    "runtime-main.js": "/JavaScript-Quiz/static/js/runtime-main.13ad5036.js",
+    "runtime-main.js.map": "/JavaScript-Quiz/static/js/runtime-main.13ad5036.js.map",
+    "static/js/2.03153d37.chunk.js": "/JavaScript-Quiz/static/js/2.03153d37.chunk.js",
+    "static/js/2.03153d37.chunk.js.map": "/JavaScript-Quiz/static/js/2.03153d37.chunk.js.map",
+    "index.html": "/JavaScript-Quiz/index.html",
+    "precache-manifest.8a315ee651e3bed84602c27cef8c3752.js": "/JavaScript-Quiz/precache-manifest.8a315ee651e3bed84602c27cef8c3752.js",
+    "service-worker.js": "/JavaScript-Quiz/service-worker.js",
+    "static/css/main.eca59ae4.chunk.css.map": "/JavaScript-Quiz/static/css/main.eca59ae4.chunk.css.map",
+    "static/js/2.03153d37.chunk.js.LICENSE.txt": "/JavaScript-Quiz/static/js/2.03153d37.chunk.js.LICENSE.txt",
+    "static/media/JavaScript.png": "/JavaScript-Quiz/static/media/JavaScript.5839fcae.png",
+    "static/media/jsjoke.png": "/JavaScript-Quiz/static/media/jsjoke.a4e23166.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.13ad5036.js",
+    "static/js/2.03153d37.chunk.js",
+    "static/css/main.eca59ae4.chunk.css",
+    "static/js/main.c0ada462.chunk.js"
+  ]
+}
