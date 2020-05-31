@@ -7,8 +7,23 @@ import ProgressBar from './ProgressBar';
 import {Link} from 'react-router-dom'
 
 class Game extends Component {
-    
+    constructor(props){
+        super(props)
+        this.state={
+           fade:false 
+        }
+    this.toggleFade= this.toggleFade.bind(this)
+    }
+
+    toggleFade(){
+        this.setState({
+            fade: !this.state.fade
+        })
+    }
+
     render() {
+
+        const {fade} = this.state;
 
         return (
                 <Grid
@@ -16,6 +31,7 @@ class Game extends Component {
                     direction='row'
                     justify='center'
                     alignItems='center'
+                    className='fade'
                 >
                     <Grid item sm={12}>
                         <p style={styles.progress}>Progress: </p><ProgressBar percentage={this.props.percentage}/>
@@ -24,7 +40,7 @@ class Game extends Component {
                             <p>{this.props.questions[0].question}</p>
                         </Paper>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={6} className={fade ? 'fade' : ''} onAnimationEnd={this.toggleFade}>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button 
                                     variant="contained" 
@@ -36,7 +52,7 @@ class Game extends Component {
                                 </Button>
                             </Paper>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={6} className={fade ? 'fade' : ''}>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button 
                                     variant="contained" 
@@ -48,7 +64,7 @@ class Game extends Component {
                                 </Button>
                             </Paper>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={6} className={fade ? 'fade' : ''}>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button 
                                     variant="contained" 
@@ -60,7 +76,7 @@ class Game extends Component {
                                 </Button>
                             </Paper>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={6} className={fade ? 'fade' : ''}>
                             <Paper style={styles.paper} elevation={3}>
                                 <Button
                                     key={this.props.questions[0].key}
@@ -80,6 +96,7 @@ class Game extends Component {
                             handleNextQuestion={this.props.handleNextQuestion}   
                             color={this.props.color} 
                             showResults={this.props.showResults}
+                            toggleFade={this.toggleFade}
                         />
                     </Grid>
                 </Grid>
@@ -92,13 +109,13 @@ class Feedback extends Component {
         if (this.props.disable){
             if (this.props.showResults === false){
                 return (
-                    <Box style={styles.footer}>
+                    <Box style={styles.footer} className='fade'>
                          <p style={{color:`${this.props.color}`}}>{this.props.feedback}</p>
                         <Button
                             variant="contained" 
                             color="primary" 
                             style={styles.button}
-                            onClick={this.props.handleNextQuestion}
+                            onClick={() => { this.props.toggleFade(); this.props.handleNextQuestion()} }
                             > 
                             Next Question
                         </Button>             
@@ -106,7 +123,7 @@ class Feedback extends Component {
                 )
             } else {
                 return (
-                <Box style={styles.footer}>
+                <Box style={styles.footer} className='fade'>
                     <p style={{color:`${this.props.color}`}}>{this.props.feedback}</p>
                     <Link to='/results'>
                         <Button

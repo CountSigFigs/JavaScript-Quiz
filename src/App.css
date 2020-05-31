@@ -38,3 +38,11 @@ a{
     transition: width .2s ease-in;
 }
 
+.fade {
+    animation: fade-in-keyframes 1s;
+  }
+  
+@keyframes fade-in-keyframes {
+    from {opacity: 0}
+    to {opacity: 1}
+  }
