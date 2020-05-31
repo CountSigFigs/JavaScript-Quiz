@@ -1,7 +1,7 @@
 export const QUESTIONS = [
     {
         id:1,
-        question:'Inside which HTML element do we put the JavaScript',
+        question:'Inside which HTML element do we put JavaScript',
         answer1: '<scripting>',
         answer2: '<javascript>',
         answer3:'<js>',

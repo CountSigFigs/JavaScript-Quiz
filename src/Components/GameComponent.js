@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import ProgressBar from './ProgressBar';
+import {Link} from 'react-router-dom'
 
 class Game extends Component {
     
@@ -78,6 +79,7 @@ class Game extends Component {
                             disable={this.props.disable} 
                             handleNextQuestion={this.props.handleNextQuestion}   
                             color={this.props.color} 
+                            showResults={this.props.showResults}
                         />
                     </Grid>
                 </Grid>
@@ -88,6 +90,7 @@ class Feedback extends Component {
 
     render (){
         if (this.props.disable){
+            if (this.props.showResults === false){
                 return (
                     <Box style={styles.footer}>
                          <p style={{color:`${this.props.color}`}}>{this.props.feedback}</p>
@@ -101,6 +104,22 @@ class Feedback extends Component {
                         </Button>             
                      </Box>
                 )
+            } else {
+                return (
+                <Box style={styles.footer}>
+                    <p style={{color:`${this.props.color}`}}>{this.props.feedback}</p>
+                    <Link to='/results'>
+                        <Button
+                            variant="contained" 
+                            color="primary" 
+                            style={styles.button}
+                            > 
+                            See results
+                        </Button>  
+                   </Link>           
+                </Box> 
+                )
+            }   
         } else {
             return <Box></Box>
         }
@@ -146,6 +165,12 @@ const styles = {
         marginTop:25,
         display:'flex',
         justifyContent:'space-between',
+        alignItems:'center'
+    },
+    showResults:{
+        marginTop:25,
+        display: 'flex',
+        justifyContent: 'flex-end',
         alignItems:'center'
     }
 }

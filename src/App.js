@@ -6,8 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import StartingComponent from './Components/StartingComponent';
 import Game from './Components/GameComponent';
-import { QUESTIONS } from '../src/State/quizquestions'
-
+import { QUESTIONS } from '../src/State/quizquestions';
+import Results from './Components/Results';
 
 class App extends Component {
 
@@ -16,19 +16,20 @@ class App extends Component {
     this.state = {
       questions: QUESTIONS,
       score: 0,
-      current:0,
-      total:10,
+      current: 1,
+      total: 10,
       feedback: '',
       color: '',
       disable: false,
-      percentage:0
+      percentage: 0,
+      showResults:false
     }
 
     this.handleClick = this.handleClick.bind(this)
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
 
   }
-  
+
   handleClick(answer) {
 
     //provides logic for clicking on answer only once
@@ -40,9 +41,10 @@ class App extends Component {
         this.setState(prevState => ({
           feedback: feedback,
           score: prevState.score + 1,
-          color:'green',
-          current: prevState.current + 1
-          })
+          color: 'green',
+          current: prevState.current + 1,
+          percentage: (this.state.current / this.state.total * 100)
+        })
         )
       } else {
         //provides feedback for wrong answer
@@ -50,31 +52,39 @@ class App extends Component {
         this.setState(prevState => ({
           current: prevState.current + 1,
           feedback: feedback,
-          color:'red'
-          })
+          color: 'red',
+          percentage: (this.state.current / this.state.total * 100)
+        })
         )
+      }
+      //exits game and displays button for results
+      if (this.state.questions.length === 1){
+        this.setState({
+          showResults:true
+        })
       }
       //logic to move on to next question
       this.toggleDisable()
+      console.log(this.state.questions.length)
     }
-  } 
-
-  handleNextQuestion(){
-
-    //pops the question for the next one to be displayed
-    let nextQuestions = this.state.questions;
-    nextQuestions.shift(0)
-
-    this.setState({
-      questions: nextQuestions,
-      percentage: (this.state.current/this.state.total * 100)
-      })
-    this.toggleDisable()
   }
 
-  toggleDisable(){
-   let disable = !this.state.disable
-    this.setState({ disable: disable})
+  handleNextQuestion() {
+
+    if (this.state.questions.length > 1) {
+      let nextQuestions = this.state.questions;
+      nextQuestions.shift(0)
+
+      this.setState({
+        questions: nextQuestions
+      })
+      this.toggleDisable()
+    } 
+  }
+
+  toggleDisable() {
+    let disable = !this.state.disable
+    this.setState({ disable: disable })
   }
 
   render() {
@@ -89,14 +99,20 @@ class App extends Component {
                   <StartingComponent />
                 </Route>
                 <Route path="/game">
-                  <Game 
-                    questions={this.state.questions} 
-                    handleClick={this.handleClick} 
+                  <Game
+                    questions={this.state.questions}
+                    handleClick={this.handleClick}
                     handleNextQuestion={this.handleNextQuestion}
-                    feedback={this.state.feedback} 
+                    feedback={this.state.feedback}
                     color={this.state.color}
                     percentage={this.state.percentage}
-                    disable={this.state.disable}/>
+                    disable={this.state.disable}
+                    showResults={this.state.showResults} />
+                </Route>
+                <Route path='/results'>
+                  <Results
+                    score={this.state.score}
+                    total={this.state.total} />
                 </Route>
               </Switch>
             </Paper>
